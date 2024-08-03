@@ -1,3 +1,6 @@
-const {calculator} = require('./func');
+const LoggerService = require('./logger/logger.service');
+const logger = new LoggerService();
 
-console.log(calculator(10,20))
+logger.log('This is an info message');
+logger.warn('This is a warning message');
+logger.error('This is an error message');
