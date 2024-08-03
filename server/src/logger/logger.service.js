@@ -1,4 +1,5 @@
 const { createLogger, format, transports } = require('winston');
+const {DIConstants} = require("../../types");
 const { combine, timestamp, printf, colorize } = format;
 /**
  * @interface ILoggerService
@@ -29,6 +30,7 @@ class LoggerService {
                 })
             ]
         });
+        console.log(Symbol.keyFor(DIConstants.Logger))
     }
 
     log(...args) {
