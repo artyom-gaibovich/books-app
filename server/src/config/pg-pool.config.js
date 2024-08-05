@@ -7,3 +7,5 @@ export const getPoolConfig = (configService) => {
     port: Number(configService.get('PG_PORT')),
   };
 };
+
+module.exports = getPoolConfig;

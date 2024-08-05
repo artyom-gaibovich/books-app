@@ -1,10 +1,14 @@
-import { inject, injectable } from 'inversify';
+const { getPoolConfig } = require('../config/pg-pool.config');
+const { Pool } = require('pg');
 
-@injectable()
+require('../config/pg-pool.config');
+
 export class PgPoolFactory {
-	constructor(@inject(TYPES.ConfigService) configService: ConfigService) {}
+  constructor(configService) {
+    this.configService = configService;
+  }
 
-	createPool() {
-		return new Pool(getPoolConfig(this.configService));
-	}
+  createPool() {
+    return new Pool(getPoolConfig(this.configService));
+  }
 }

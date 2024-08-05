@@ -1,15 +1,9 @@
-import { inject, injectable } from 'inversify';
-import { DIConstants } from '../../types';
+const { DIConstants } = require('../../types');
 
-@injectable()
 export class PgPoolService {
-  logger;
-
-  constructor(
-    @inject(DIConstants.Logger) logger,
-    @inject(DIConstants.PgPoolFactory) pgPoolFactory
-  ) {
+  constructor(logger, pgPoolFactory) {
     this.client = pgPoolFactory.createPool();
+    this.logger = logger;
   }
 
   async connect() {
