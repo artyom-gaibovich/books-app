@@ -1,7 +1,7 @@
-import { ErrorCodes } from '../constants/error.constants';
-import { verify } from 'jsonwebtoken';
+const { ErrorCodes } = require('../constants/error.constants');
+const { verify } = require('jsonwebtoken');
 
-export class AuthMiddleware {
+class AuthMiddleware {
   constructor(secret, ignoreJWTRoutes) {
     this.secret = secret;
     this.ignoreJWTRoutes = ignoreJWTRoutes;
@@ -43,3 +43,5 @@ export class AuthMiddleware {
     }
   }
 }
+
+module.exports = { AuthMiddleware };

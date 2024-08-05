@@ -1,4 +1,4 @@
-export class RolesRepository {
+class RolesRepository {
   constructor(rolesService, databaseService) {
     this.rolesService = rolesService;
     this.databaseService = databaseService;
@@ -32,3 +32,5 @@ export class RolesRepository {
     }
   }
 }
+
+module.exports = { RolesRepository };

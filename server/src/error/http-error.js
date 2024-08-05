@@ -1,4 +1,4 @@
-export class HTTPError extends Error {
+class HTTPError extends Error {
   constructor(statusCode, message, context) {
     super(message);
     this.statusCode = statusCode;
@@ -6,3 +6,5 @@ export class HTTPError extends Error {
     this.context = context;
   }
 }
+
+module.exports = { HTTPError };

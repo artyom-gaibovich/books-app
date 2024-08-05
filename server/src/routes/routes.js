@@ -1,4 +1,4 @@
-export class RoutesService {
+class RoutesService {
   constructor(configService) {
     this.configService = configService;
   }
@@ -19,3 +19,5 @@ export class RoutesService {
     return this.configService.get('REGISTER_ROUTE');
   }
 }
+
+module.exports = { RoutesService };

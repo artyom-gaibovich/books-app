@@ -1,12 +1,7 @@
 const { createLogger, format, transports } = require('winston');
 const {DIConstants} = require("../../types");
 const { combine, timestamp, printf, colorize } = format;
-/**
- * @interface ILoggerService
- * @property {function(...any): void} log - Log information messages.
- * @property {function(...any): void} error - Log error messages.
- * @property {function(...any): void} warn - Log warning messages.
- */
+
 
 class LoggerService {
     constructor() {
@@ -46,4 +41,4 @@ class LoggerService {
     }
 }
 
-module.exports = LoggerService;
+module.exports = {LoggerService};

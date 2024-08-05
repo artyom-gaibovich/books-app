@@ -1,4 +1,4 @@
-export class RolesService {
+class RolesService {
   constructor(configService) {
     this.configService = configService;
   }
@@ -11,3 +11,5 @@ export class RolesService {
     return this.configService.get('USER_ROLE');
   }
 }
+
+module.exports = { RolesService };
