@@ -1,0 +1,10 @@
+databaseChangeLog:
+  - changeSet:
+      id: version-1722883543
+      author: your_name
+      changes:
+        - sql:
+            sql:
+              CREATE TABLE "user".roles (
+              value VARCHAR(5) PRIMARY KEY
+              );
