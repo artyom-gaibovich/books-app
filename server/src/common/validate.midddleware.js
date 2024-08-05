@@ -1,8 +1,8 @@
-import { ErrorCodes } from '../constants/error.constants';
-import {validate, ValidationTypes as ObjectId} from 'class-validator';
-import {plainToClass} from "class-transformer";
+const { ErrorCodes } = require('../constants/error.constants');
+const { validate, ValidationTypes } = require('class-validator');
+const { plainToClass } = require('class-transformer');
 
-export class ValidateMiddleware {
+class ValidateMiddleware {
   constructor(classToValidate) {
     this.classToValidate = classToValidate;
   }
@@ -19,7 +19,7 @@ export class ValidateMiddleware {
   }
 }
 
-export class ValidateParamIdIsMongoStringMiddleware {
+ class ValidateParamIdIsMongoStringMiddleware {
   constructor(paramName) {
     this.paramName = paramName;
   }
@@ -52,3 +52,9 @@ class ValidateParamIdIsNumberMiddleware {
     }
   }
 }
+
+module.exports = {
+  ValidateMiddleware,
+  ValidateParamIdIsMongoStringMiddleware,
+  ValidateParamIdIsNumberMiddleware,
+};

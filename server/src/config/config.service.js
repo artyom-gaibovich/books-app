@@ -1,8 +1,8 @@
-import { DIConstants } from '../../types';
+const { DIConstants } = require('../../types');
 
 const dotenv = require('dotenv');
 
-export class ConfigService {
+class ConfigService {
   constructor(logger) {
     this.logger = logger;
     const result = dotenv.config();
@@ -24,3 +24,5 @@ export class ConfigService {
     return this.config[key];
   }
 }
+
+module.exports = { ConfigService };

@@ -1,6 +1,8 @@
-import { ErrorCodes } from '../constants/error.constants';
+const { HTTPError } = require('./http-error');
 
-export class ExceptionFilter {
+const { ErrorCodes } = require('../constants/error.constants');
+
+class ExceptionFilter {
   constructor(logger) {
     this.logger = logger;
   }
@@ -17,3 +19,5 @@ export class ExceptionFilter {
     }
   }
 }
+
+module.exports = { ExceptionFilter };

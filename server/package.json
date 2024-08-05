@@ -7,7 +7,7 @@
 	"scripts": {
 		"start": "node ./dist/src/main.js",
 		"dev": "nodemon",
-		"dev:inspect": "nodemon -e ts,json --exec node --inspect=localhost:9222 -r ts-node/register src/main.ts",
+		"dev:inspect": "nodemon --inspect=localhost:9222 src/main.js",
 		"lint": "eslint . --ext .js",
 		"lint:fix": "eslint . --ext .js --fix",
 		"format": "prettier --write .",

@@ -1,5 +1,5 @@
-import {Router} from "express";
-import {SuccessCodes} from "../constants/succes.constants";
+const { Router } = require('express');
+const { SuccessCodes } = require('../constants/succes.constants');
 
 class BaseController {
   constructor(logger, resource) {
@@ -26,10 +26,15 @@ class BaseController {
       this.logger.log(
         `[ ${route.method.toUpperCase()} ] /${this.resource}${route.path}`
       );
+
       const middleware = route.middlewares?.map((m) => m.execute.bind(m));
       const handler = route.func.bind(this);
+
+
       const pipeline = middleware ? [...middleware, handler] : handler;
       this.router[route.method](route.path, pipeline);
     }
   }
 }
+
+module.exports = { BaseController };

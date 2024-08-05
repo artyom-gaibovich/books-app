@@ -1,4 +1,4 @@
-export const getPoolConfig = (configService) => {
+const getPoolConfig = (configService) => {
   return {
     user: configService.get('PG_USER'),
     host: configService.get('PG_HOST'),
@@ -8,4 +8,4 @@ export const getPoolConfig = (configService) => {
   };
 };
 
-module.exports = getPoolConfig;
+module.exports = { getPoolConfig };

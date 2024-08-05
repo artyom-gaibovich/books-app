@@ -1,6 +1,6 @@
 const { DIConstants } = require('../../types');
 
-export class PgPoolService {
+class PgPoolService {
   constructor(logger, pgPoolFactory) {
     this.client = pgPoolFactory.createPool();
     this.logger = logger;
@@ -41,3 +41,5 @@ export class PgPoolService {
     }
   }
 }
+
+module.exports = { PgPoolService };
