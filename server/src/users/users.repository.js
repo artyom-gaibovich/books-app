@@ -25,6 +25,12 @@ class UsersRepository {
     const user = result[0];
     return user;
   }
+
+  async findAll() {
+      const query = 'SELECT * FROM "user".users;';
+      return await this.databaseService.query(query);
+  }
+
 }
 
 module.exports = { UsersRepository };

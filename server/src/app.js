@@ -30,7 +30,7 @@ class App {
       this.configService.get('SECRET'),
       [this.routesService.login(), this.routesService.register()]
     );
-    this.app.use(authMiddleware.execute.bind(authMiddleware));
+    //this.app.use(authMiddleware.execute.bind(authMiddleware));
   }
 
   useRoutes() {
@@ -45,7 +45,7 @@ class App {
   async init() {
     this.useMiddleware();
     this.useRoutes();
-    this.useExceptionFilters();
+    //this.useExceptionFilters();
     this.server = this.app.listen(this.port);
     this.logger.log(`Server start on http://localhost:${this.port}`);
     await this.database.connect();

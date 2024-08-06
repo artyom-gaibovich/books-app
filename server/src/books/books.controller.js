@@ -37,16 +37,18 @@ class BookController extends BaseController {
       },
     ]);
     this.bookService = bookService;
+    this.loggerService = loggerService;
     this.rolesService = rolesService;
   }
 
-  async create(req, res, _) {
-    const { title, author, publicationDate, genres } = req.body;
+  async create({ body }, res, _) {
+    const { title, author, publicationDate, genres, userId } = body;
     const result = await this.bookService.createBook({
       title,
       author,
       publicationDate,
       genres,
+      userId,
     });
     this.ok(res, result);
     this.loggerService.log(`Create book: ${JSON.stringify(result)}`);
