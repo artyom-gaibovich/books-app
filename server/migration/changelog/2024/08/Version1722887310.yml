@@ -1,0 +1,14 @@
+databaseChangeLog:
+  - changeSet:
+      id: version-1722887310
+      author: artyom_gaibovich
+      changes:
+        - sql:
+            sql: |
+              CREATE TABLE IF NOT EXISTS "book".books (
+                id SERIAL PRIMARY KEY,
+                title VARCHAR(255) NOT NULL,
+                author VARCHAR(255) NOT NULL,
+                user_id INTEGER NOT NULL,
+                FOREIGN KEY (user_id) REFERENCES "book".users(id)
+              );

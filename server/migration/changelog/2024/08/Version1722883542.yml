@@ -1,7 +1,7 @@
 databaseChangeLog:
   - changeSet:
       id: version-1722883542
-      author: your_name
+      author: artyom_gaibovich
       changes:
         - sql:
             sql:

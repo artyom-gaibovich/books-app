@@ -7,6 +7,7 @@ class App {
     logger,
     database,
     userController,
+    bookController,
     exceptionFilter,
     configService,
     routesService
@@ -17,6 +18,7 @@ class App {
     this.database = database;
     this.logger = logger;
     this.userController = userController;
+    this.bookController = bookController;
     this.exceptionFilter = exceptionFilter;
     this.configService = configService;
     this.routesService = routesService;
@@ -32,6 +34,7 @@ class App {
   }
 
   useRoutes() {
+    this.app.use(this.routesService.books(), this.bookController.router);
     this.app.use(this.routesService.users(), this.userController.router);
   }
 
