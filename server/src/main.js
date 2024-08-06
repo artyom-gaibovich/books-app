@@ -11,6 +11,7 @@ const { ExceptionFilter } = require('./error/exception.filter');
 const { RoutesService } = require('./routes/routes');
 const { BookController } = require('./books/books.controller');
 const { BookService } = require('./books/books.service');
+const { BookRepository } = require('./books/books.repository');
 
 async function bootstrap() {
   const logger = new LoggerService();
@@ -20,35 +21,29 @@ async function bootstrap() {
     new PgPoolFactory(configService)
   );
 
-  const usersRepository = new UsersRepository(pgPoolService);
   const rolesService = new RolesService(configService);
-  const userService = new UsersService(
-    configService,
-    usersRepository,
-    rolesService
-  );
 
-  const userController = new UserController(
-    logger,
-    userService,
-    configService,
-    rolesService
-  );
-  const exceptionFilter = new ExceptionFilter(logger);
-  const routesService = new RoutesService(configService);
-  const bookController = new BookController(
-    logger,
-    new BookService(),
-    rolesService
-  );
   const app = new App(
     logger,
     pgPoolService,
-    userController,
-    bookController,
-    exceptionFilter,
+    new UserController(
+      logger,
+      new UsersService(
+        configService,
+        new UsersRepository(pgPoolService),
+        rolesService
+      ),
+      configService,
+      rolesService
+    ),
+    new BookController(
+      logger,
+      new BookService(new BookRepository(pgPoolService)),
+      rolesService
+    ),
+    new ExceptionFilter(logger),
     configService,
-    routesService
+    new RoutesService(configService)
   );
   app.init();
 }

@@ -1,32 +1,46 @@
-const { ValidateMiddleware, ValidateParamIdIsNumberMiddleware} = require('../common/validate.midddleware');
+const {
+  ValidateMiddleware,
+  ValidateParamIdIsNumberMiddleware,
+} = require('../common/validate.midddleware');
 
 const { SuccessCodes } = require('../constants/succes.constants');
-const { AuthGuard, AuthAdminGuard} = require('../common/auth.guard');
+const { AuthGuard, AuthAdminGuard } = require('../common/auth.guard');
 const { BaseController } = require('../common/base.controller');
-const {HTTPError} = require("../error/http-error");
+const { HTTPError } = require('../error/http-error');
 
 class UserController extends BaseController {
   constructor(loggerService, userService, configService, rolesService) {
     super(loggerService, 'users');
     this.bindRoutes([
       {
+        path: '',
+        method: 'get',
+        func: this.findAll,
+        middlewares: [],
+      },
+      {
         path: '/register',
         method: 'post',
         func: this.register,
-        middlewares: [/*new ValidateMiddleware(UserRegisterDto)*/],
+        middlewares: [
+          /*new ValidateMiddleware(UserRegisterDto)*/
+        ],
       },
       {
         path: '/login',
         method: 'post',
         func: this.login,
-        middlewares: [/*new ValidateMiddleware(UserLoginDto)*/],
+        middlewares: [
+          /*new ValidateMiddleware(UserLoginDto)*/
+        ],
       },
-
       {
         path: '/me',
         method: 'get',
         func: this.info,
-        middlewares: [/*new AuthGuard()*/],
+        middlewares: [
+          /*new AuthGuard()*/
+        ],
       },
     ]);
     this.userService = userService;
@@ -57,11 +71,6 @@ class UserController extends BaseController {
 
   async register({ body }, res, next) {
     this.loggerService.log('[ register ] Attempting to register new user');
-
-    console.log()
-    console.log()
-    console.log()
-    console.log()
     const user = await this.userService.createUser(body);
     if (!user) {
       this.loggerService.log('[ register ] User already exists');
@@ -79,6 +88,13 @@ class UserController extends BaseController {
     });
   }
 
+  async findAll(req, res, _) {
+    const users = await this.userService.findAll();
+    this.ok(res, { users });
+    this.loggerService.log(
+        `Find all users: ${users?.length ? users?.length : 0} found`
+    );
+  }
   async info({ username, roles }, res, _) {
     const userInfo = await this.userService.getUserInfo(username);
     if (!userInfo) {

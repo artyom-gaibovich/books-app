@@ -3,8 +3,8 @@ class BookService {
     this.bookRepository = bookRepository;
   }
 
-  async createBook({ title, author, publicationDate, genres }) {
-    const newBook = { title, author, publicationDate, genres };
+  async createBook({ title, author, publicationDate, genres, userId }) {
+    const newBook = { title, author, publicationDate, genres, userId };
     return this.bookRepository.addBook(newBook);
   }
 

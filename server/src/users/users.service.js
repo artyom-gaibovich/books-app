@@ -44,6 +44,14 @@ class UsersService {
     return result.roles;
   }
 
+  async findAll() {
+    const result = await this.usersRepository.findAll()
+    if (!result) {
+      return null;
+    }
+    return result;
+  }
+
   async getUserInfo(username) {
     const result = await this.usersRepository.find(username);
     if (!result) {
