@@ -9,6 +9,8 @@ const { UsersRepository } = require('./users/users.repository');
 const { RolesService } = require('./roles/roles.service');
 const { ExceptionFilter } = require('./error/exception.filter');
 const { RoutesService } = require('./routes/routes');
+const { BookController } = require('./books/books.controller');
+const { BookService } = require('./books/books.service');
 
 async function bootstrap() {
   const logger = new LoggerService();
@@ -34,11 +36,16 @@ async function bootstrap() {
   );
   const exceptionFilter = new ExceptionFilter(logger);
   const routesService = new RoutesService(configService);
-
+  const bookController = new BookController(
+    logger,
+    new BookService(),
+    rolesService
+  );
   const app = new App(
     logger,
     pgPoolService,
     userController,
+    bookController,
     exceptionFilter,
     configService,
     routesService

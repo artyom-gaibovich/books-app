@@ -3,6 +3,7 @@ const { ValidateMiddleware, ValidateParamIdIsNumberMiddleware} = require('../com
 const { SuccessCodes } = require('../constants/succes.constants');
 const { AuthGuard, AuthAdminGuard} = require('../common/auth.guard');
 const { BaseController } = require('../common/base.controller');
+const {HTTPError} = require("../error/http-error");
 
 class UserController extends BaseController {
   constructor(loggerService, userService, configService, rolesService) {
@@ -56,6 +57,11 @@ class UserController extends BaseController {
 
   async register({ body }, res, next) {
     this.loggerService.log('[ register ] Attempting to register new user');
+
+    console.log()
+    console.log()
+    console.log()
+    console.log()
     const user = await this.userService.createUser(body);
     if (!user) {
       this.loggerService.log('[ register ] User already exists');

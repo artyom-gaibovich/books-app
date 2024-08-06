@@ -1,0 +1,8 @@
+databaseChangeLog:
+  - changeSet:
+      id: version-1722887309
+      author: artyom_gaibovich
+      changes:
+        - sql:
+            sql: |
+              CREATE SCHEMA IF NOT EXISTS "book";

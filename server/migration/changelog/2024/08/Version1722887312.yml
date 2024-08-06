@@ -1,0 +1,9 @@
+databaseChangeLog:
+  - changeSet:
+      id: version-1722887312
+      author: artyom_gaibovich
+      changes:
+        - sql:
+            sql: |
+              CREATE INDEX idx_user_id ON "book".books(user_id);
+              CREATE INDEX idx_book_title ON "book".books(title);
